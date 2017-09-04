@@ -1,0 +1,18 @@
+{
+  "name": "timewarp",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kossnocorp/timewarp.git"
+  },
+  "author": "Sasha Koss <koss@nocorp.me>",
+  "bugs": {
+    "url": "https://github.com/kossnocorp/timewarp/issues"
+  },
+  "homepage": "https://github.com/kossnocorp/timewarp#readme",
+  "dependencies": {
+    "koa": "^2.3.0"
+  }
+}
