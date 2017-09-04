@@ -13,6 +13,10 @@
   },
   "homepage": "https://github.com/kossnocorp/timewarp#readme",
   "dependencies": {
-    "koa": "^2.3.0"
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "got": "^7.1.0",
+    "kue": "^0.11.6",
+    "redis": "^2.8.0"
   }
 }
