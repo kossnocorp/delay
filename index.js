@@ -3,6 +3,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const queue = require('./queue')
+const nanoid = require('nanoid')
 
 const app = express()
 
@@ -13,6 +14,28 @@ app.use(
     type: '*/*'
   })
 )
+
+app.all('/active', (_, res) => {
+  queue.getDelayedCount().then(count => res.send(`Count: ${count}`))
+})
+
+app.all('/test', (_, res) => {
+  res.send('👌')
+})
+
+app.delete('/jobs/:jobId', (req, res) => {
+  const { jobId } = req.params
+  console.log('Job ID:', jobId)
+  queue.getJob(jobId).then(job => {
+    console.log('Job:', job)
+    if (job) {
+      job.remove()
+    } else {
+      console.log('Can not locate')
+    }
+    res.send('👌')
+  })
+})
 
 app.all('/:url', (req, res) => {
   const { url } = req.params
@@ -31,18 +54,23 @@ app.all('/:url', (req, res) => {
   const method = req.method
   const headers = req.headers
   const body = req.body && req.body.toString('binary')
+  const jobId = nanoid()
 
   queue
-    .create('fire', {
-      date,
-      method,
-      url,
-      headers,
-      body
+    .add(
+      {
+        date,
+        method,
+        url,
+        headers,
+        body
+      },
+      { delay, jobId }
+    )
+    .then(job => {
+      console.log('Job:', job)
+      res.send(JSON.stringify(jobId))
     })
-    .delay(delay)
-    .save()
-  res.send('👌')
 })
 
 const port = process.env.PORT
