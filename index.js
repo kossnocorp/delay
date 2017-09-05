@@ -27,11 +27,10 @@ app.delete('/jobs/:jobId', (req, res) => {
   const { jobId } = req.params
   console.log('Job ID:', jobId)
   queue.getJob(jobId).then(job => {
-    console.log('Job:', job)
     if (job) {
       job.remove()
     } else {
-      console.log('Can not locate')
+      // TODO: Send 404
     }
     res.send('👌')
   })
@@ -67,8 +66,7 @@ app.all('/:url', (req, res) => {
       },
       { delay, jobId }
     )
-    .then(job => {
-      console.log('Job:', job)
+    .then(() => {
       res.send(JSON.stringify(jobId))
     })
 })
