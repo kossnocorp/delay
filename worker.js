@@ -5,6 +5,7 @@ const queue = require('./queue')
 
 queue.process(job => {
   const { date, method, url, headers, body: bodyStr } = job.data
+  console.log(`Processing a request scheduled at ${date}`)
   const body = new Buffer(bodyStr, 'binary')
   return got(url, {
     method,
