@@ -10,7 +10,8 @@ queue.process(job => {
   return got(url, {
     method,
     body,
-    headers
+    headers,
+    rejectUnauthorized: false
   })
     .then(resp => {
       console.log(`The request to ${url} scheduled at ${date} is complete`)
