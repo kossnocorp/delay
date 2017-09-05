@@ -13,11 +13,11 @@ queue.process(job => {
     headers
   })
     .then(resp => {
-      console.log(`The request to ${resp.url} scheduled at ${date} is complete`)
+      console.log(`The request to ${url} scheduled at ${date} is complete`)
     })
     .catch(err => {
       console.error(
-        `The request to ${resp.url} scheduled at ${date} failed with erorr:`
+        `The request to ${url} scheduled at ${date} failed with erorr:`
       )
       console.error(err)
     })
