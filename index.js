@@ -55,6 +55,7 @@ app.all('/r/:url', (req, res) => {
   const body = req.body && req.body.toString('binary')
   const jobId = nanoid()
 
+  console.log(`Scheduling a request to ${resp.url} (#${jobId})`)
   queue
     .add(
       {
