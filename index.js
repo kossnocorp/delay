@@ -36,7 +36,7 @@ app.delete('/jobs/:jobId', (req, res) => {
   })
 })
 
-app.all('/:url', (req, res) => {
+app.all('/r/:url', (req, res) => {
   const { url } = req.params
   const { delay: dirtyDelay } = req.query
 
