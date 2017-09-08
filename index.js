@@ -18,22 +18,18 @@ app.use(
 )
 
 app.use((req, res, next) => {
-  console.log('Got a request with the given headers:', JSON.stringify(req.headers))
+  console.log(
+    'Got a request with the given headers:',
+    JSON.stringify(req.headers)
+  )
 
   if (req.get('Delay-Origin')) {
     console.log('The request is a schedule request')
 
     const { protocol, host } = parseURL(req.get('Delay-Origin'))
-    console.log('Building URL for schedule...')
-    console.log('  Delay-Origin', req.get('Delay-Origin'))
-    console.log('  protocol', protocol)
-    console.log('  host', host)
-    console.log('  pathname', req.originalUrl)
-    const url = formatURL({
-      protocol,
-      host,
-      pathname: req.originalUrl
-    })
+    const url = formatURL(
+      Object.assign({}, parseURL(req.originalUrl), { protocol, host })
+    )
 
     const delay = parseInt(req.get('Delay-Value'))
     if (Number.isNaN(delay)) {
