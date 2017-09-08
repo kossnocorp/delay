@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
 const express = require('express')
+const { format: formatURL, URL } = require('url')
 const bodyParser = require('body-parser')
-const queue = require('./queue')
 const nanoid = require('nanoid')
+const { omitBy } = require('lodash')
+const queue = require('./queue')
 
 const app = express()
 
@@ -14,6 +16,46 @@ app.use(
     type: '*/*'
   })
 )
+
+app.use((req, res, next) => {
+  if (req.get('Delay-Origin')) {
+    const { protocol, host } = parse(req.get('Delay-Origin'))
+    const url = formatURL({
+      protocol,
+      host,
+      pathname: req.originalUrl
+    })
+
+    const delay = parseInt(req.get('Delay-Value'))
+    if (Number.isNaN(delay)) {
+      // TODO: Respond with error
+    }
+
+    const date = new Date().toISOString()
+    const method = req.method
+    const headers = omitBy(req.headers, (v, k) => k.match(/^delay-/i))
+    const body = req.body && req.body.toString('binary')
+    const jobId = nanoid()
+
+    console.log(`Scheduling a request to ${url} (#${jobId})`)
+    queue
+      .add(
+        {
+          date,
+          method,
+          url,
+          headers,
+          body
+        },
+        { delay, jobId }
+      )
+      .then(() => {
+        res.send(JSON.stringify(jobId))
+      })
+  } else {
+    next()
+  }
+})
 
 app.all('/active', (_, res) => {
   queue.getDelayedCount().then(count => res.send(`Count: ${count}`))
@@ -34,42 +76,6 @@ app.delete('/jobs/:jobId', (req, res) => {
     }
     res.send('👌')
   })
-})
-
-app.all('/r/:url', (req, res) => {
-  const { url } = req.params
-  const { delay: dirtyDelay } = req.query
-
-  let delay
-  if (dirtyDelay) {
-    delay = parseInt(dirtyDelay)
-    if (Number.isNaN(delay)) {
-      // TODO: Respond with error
-      delay = undefined
-    }
-  }
-
-  const date = new Date().toISOString()
-  const method = req.method
-  const headers = req.headers
-  const body = req.body && req.body.toString('binary')
-  const jobId = nanoid()
-
-  console.log(`Scheduling a request to ${url} (#${jobId})`)
-  queue
-    .add(
-      {
-        date,
-        method,
-        url,
-        headers,
-        body
-      },
-      { delay, jobId }
-    )
-    .then(() => {
-      res.send(JSON.stringify(jobId))
-    })
 })
 
 const port = process.env.PORT
