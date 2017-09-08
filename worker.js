@@ -7,11 +7,16 @@ queue.process(job => {
   const { date, method, url, headers, body: bodyStr } = job.data
   console.log(`Processing a request scheduled at ${date}`)
   const body = new Buffer(bodyStr, 'binary')
+  console.log('Request info:')
+  console.log('  - url', url)
+  console.log('  - method', method)
+  console.log('  - body', body)
+  console.log('  - headers', headers)
   return got(url, {
     method,
     body,
-    headers,
-    rejectUnauthorized: false
+    headers//,
+    //rejectUnauthorized: false
   })
     .then(resp => {
       console.log(`The request to ${url} scheduled at ${date} is complete`)
