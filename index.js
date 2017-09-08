@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const express = require('express')
-const { format: formatURL, URL } = require('url')
+const { format: formatURL, parse: parseURL } = require('url')
 const bodyParser = require('body-parser')
 const nanoid = require('nanoid')
 const { omitBy } = require('lodash')
@@ -23,7 +23,7 @@ app.use((req, res, next) => {
   if (req.get('Delay-Origin')) {
     console.log('The request is a schedule request')
 
-    const { protocol, host } = parse(req.get('Delay-Origin'))
+    const { protocol, host } = parseURL(req.get('Delay-Origin'))
     const url = formatURL({
       protocol,
       host,
