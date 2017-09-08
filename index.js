@@ -18,7 +18,11 @@ app.use(
 )
 
 app.use((req, res, next) => {
+  console.log('Got a request with the given headers:', JSON.stringify(req.headers))
+
   if (req.get('Delay-Origin')) {
+    console.log('The request is a schedule request')
+
     const { protocol, host } = parse(req.get('Delay-Origin'))
     const url = formatURL({
       protocol,
@@ -53,6 +57,7 @@ app.use((req, res, next) => {
         res.send(JSON.stringify(jobId))
       })
   } else {
+    console.log('Proceeding to routes')
     next()
   }
 })
