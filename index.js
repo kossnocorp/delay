@@ -24,6 +24,11 @@ app.use((req, res, next) => {
     console.log('The request is a schedule request')
 
     const { protocol, host } = parseURL(req.get('Delay-Origin'))
+    console.log('Building URL for schedule...')
+    console.log('  Delay-Origin', req.get('Delay-Origin'))
+    console.log('  protocol', protocol)
+    console.log('  host', host)
+    console.log('  pathname', req.originalUrl)
     const url = formatURL({
       protocol,
       host,
