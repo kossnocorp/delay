@@ -41,7 +41,7 @@ app.use((req, res, next) => {
     const headers = Object.assign(
       omitBy(req.headers, (v, k) => k.match(/^delay-/i)),
       {
-        Host: host
+        host
       }
     )
     const body = req.body && req.body.toString('binary')
