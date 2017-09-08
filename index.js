@@ -38,7 +38,12 @@ app.use((req, res, next) => {
 
     const date = new Date().toISOString()
     const method = req.method
-    const headers = omitBy(req.headers, (v, k) => k.match(/^delay-/i))
+    const headers = Object.assign(
+      omitBy(req.headers, (v, k) => k.match(/^delay-/i)),
+      {
+        Host: host
+      }
+    )
     const body = req.body && req.body.toString('binary')
     const jobId = nanoid()
 
