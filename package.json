@@ -1,17 +1,17 @@
 {
-  "name": "timewarp",
+  "name": "delay",
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kossnocorp/timewarp.git"
+    "url": "git+https://github.com/kossnocorp/delay.git"
   },
   "author": "Sasha Koss <koss@nocorp.me>",
   "bugs": {
-    "url": "https://github.com/kossnocorp/timewarp/issues"
+    "url": "https://github.com/kossnocorp/delay/issues"
   },
-  "homepage": "https://github.com/kossnocorp/timewarp#readme",
+  "homepage": "https://github.com/kossnocorp/delay#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
     "bull": "^3.0.0",
@@ -19,5 +19,8 @@
     "got": "^7.1.0",
     "lodash": "^4.17.4",
     "nanoid": "^0.2.0"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0"
   }
 }
