@@ -2,7 +2,9 @@
   "name": "delay",
   "version": "0.1.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "ava **/test.js test/system.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kossnocorp/delay.git"
