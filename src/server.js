@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const express = require('express')
 const { format: formatURL, parse: parseURL } = require('url')
 const bodyParser = require('body-parser')
@@ -18,14 +16,7 @@ app.use(
 )
 
 app.use((req, res, next) => {
-  console.log(
-    'Got a request with the given headers:',
-    JSON.stringify(req.headers)
-  )
-
   if (req.get('Delay-Origin')) {
-    console.log('The request is a schedule request')
-
     const { protocol, host } = parseURL(req.get('Delay-Origin'))
     const url = formatURL(
       Object.assign({}, parseURL(req.originalUrl), { protocol, host })
@@ -47,7 +38,7 @@ app.use((req, res, next) => {
     const body = req.body && req.body.toString('binary')
     const jobId = nanoid()
 
-    console.log(`Scheduling a request to ${url} (#${jobId})`)
+    console.log(`(${job.id}) Scheduling a request to ${date}`)
     queue
       .add(
         {
@@ -63,7 +54,6 @@ app.use((req, res, next) => {
         res.send(JSON.stringify(jobId))
       })
   } else {
-    console.log('Proceeding to routes')
     next()
   }
 })
@@ -73,19 +63,17 @@ app.all('/active', (_, res) => {
 })
 
 app.all('/test', (_, res) => {
-  res.send('👌')
+  res.send({})
 })
 
-app.delete('/jobs/:jobId', (req, res) => {
+app.delete('/requests/:jobId', (req, res) => {
   const { jobId } = req.params
-  console.log('Job ID:', jobId)
   queue.getJob(jobId).then(job => {
     if (job) {
-      job.remove()
+      job.remove().then(() => console.log(`(${jobId}) The request is deleted`))
     } else {
       // TODO: Send 404
     }
-    res.send('👌')
   })
 })
 
