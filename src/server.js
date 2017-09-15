@@ -38,7 +38,7 @@ app.use((req, res, next) => {
     const body = req.body && req.body.toString('binary')
     const jobId = nanoid()
 
-    console.log(`(${job.id}) Scheduling a request to ${date}`)
+    console.log(`(${jobId}) Scheduling a request to ${date}`)
     queue
       .add(
         {
