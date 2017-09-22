@@ -1,2 +1,2 @@
-web: node ./src/server/index.js
-worker: node ./src/worker/index.js
+web: node ./src/server.js
+worker: node ./src/worker.js
