@@ -6,4 +6,4 @@ start:
 	nf start
 
 logs:
-	heroku logs -t --app delay-run
+	heroku logs -t --app delay-production
