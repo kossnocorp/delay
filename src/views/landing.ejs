@@ -51,8 +51,13 @@
           Sign up for early access:
         </h2>
 
-        <form class='h is-wrap' action='https://cafe.us16.list-manage.com/subscribe/post?u=bf10ea6555c1dc38f3bcfa7e5&id=e2b83532bb' method='post' target='_blank'>
-          <input class='input' name='EMAIL' placeholder='Your email' />
+        <script>
+          window.trackSubmit = function () {
+            window.ga && window.ga('send', 'event', 'landing', 'subscribe')
+          }
+        </script>
+        <form class='h is-wrap' action='https://cafe.us16.list-manage.com/subscribe/post?u=bf10ea6555c1dc38f3bcfa7e5&id=e2b83532bb' method='post' target='_blank' onsubmit='trackSubmit()'>
+          <input id='email' type='email' required class='input' name='EMAIL' placeholder='Your email' />
 
           <button class='button' type='submit'>
             Request Your Invite
