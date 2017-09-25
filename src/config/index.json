@@ -1,13 +1,16 @@
 {
   "development": {
-    "ga": "UA-106915325-2"
+    "analyticsId": "UA-106915325-2",
+    "optimizeId": ""
   },
 
   "production": {
-    "ga": "UA-106915325-1"
+    "analyticsId": "UA-106915325-1",
+    "optimizeId": "GTM-WQGM2HD"
   },
 
   "staging": {
-    "ga": "UA-106915325-3"
+    "analyticsId": "UA-106915325-3",
+    "optimizeId": ""
   }
 }

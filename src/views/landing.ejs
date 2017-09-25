@@ -2,13 +2,13 @@
 <html>
   <head>
     <!-- GA -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= config.ga %>"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= config.analyticsId %>"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments)};
       gtag('js', new Date());
 
-      gtag('config', '<%= config.ga %>');
+      gtag('config', '<%= config.analyticsId %>', {optimize_id: '<%= config.optimizeId %>'});
     </script>
 
     <meta charset='utf-8'>
