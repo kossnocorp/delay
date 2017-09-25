@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- GA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= config.ga %>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments)};
+      gtag('js', new Date());
+
+      gtag('config', '<%= config.ga %>');
+    </script>
+
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Delay</title>
+    <link rel='stylesheet' type='text/css' href='/style.css' />
+
+    <!-- Favicons -->
+    <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png'>
+    <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'>
+    <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'>
+  </head>
+
+  <body>
+    <section class='section is-solid v is-large'>
+      <header class='v'>
+        <a href='/' class='logotype h'>
+          <img src='/logo.svg' class='logo' />
+          <span>Delay</span>
+        </a>
+
+        <h1 class='header h'>
+          A scheduler for serverless applications
+        </h1>
+
+        <p class='text is-large'>
+          Delay allows to schedule requests to your serverless application. You can invoke a function with a delay, in a given time or periodically.
+        </p>
+      </header>
+
+      <div class='v'>
+        <h2 class='header is-small'>
+          Sign up for early access:
+        </h2>
+
+        <form class='h is-wrap' action='https://cafe.us16.list-manage.com/subscribe/post?u=bf10ea6555c1dc38f3bcfa7e5&id=e2b83532bb' method='post' target='_blank'>
+          <input class='input' name='EMAIL' placeholder='Your email' />
+
+          <button class='button' type='submit'>
+            Request Your Invite
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <section class='section v'>
+      <h2 class='header is-small'>
+        Why Delay?
+      </h2>
+
+      <p class='text'>
+        <strong>Save time and money on infrastructure.</strong> A custom scheduler requires complex setup. To get started with Delay you won't have to write workers' code and provision servers.
+      </p>
+
+      <p class='text'>
+        <strong>Avoid risks.</strong> We keep software up-to-date, monitor servers 24/7 and regularly backup your data. Delay does tedious work for you, so you can peacefully sleep during the night.
+      </p>
+
+      <p class='text'>
+        <strong>Stay lean.</strong> To use Delay you don't need to install dependencies or learn new technologies. Delay works with any language and service provider. Use Delay is as easy as sending an HTTP request.
+      </p>
+    </section>
+
+    <section class='section is-solid is-gray v'>
+      <h2 class='header is-small'>
+        Scheduler Features
+      </h2>
+
+      <p class='text'>
+        <strong>Flexible scheduling.</strong> Schedule a request to send with a delay, on a specific time or periodically.
+      </p>
+
+      <p class='text'>
+        <strong>Delay understands cron.</strong> You can schedule recurring tasks using the cron syntax.
+      </p>
+
+      <p class='text'>
+        <strong>REST API.</strong> Access and control scheduled tasks using REST API.
+      </p>
+
+      <p class='text'>
+        <strong>Dashboard.</strong> You can access scheduled requests list using web interface. You'll see how many requests you send and how many have failed.
+      </p>
+
+      <p class='text'>
+        <strong>Monitoring.</strong> We'll notify you when a request fails.
+      </p>
+    </section>
+
+    <section class='section'>
+      <p class='text is-small'>
+        Made in 🇪🇺 by <a href='https://teleport.cafe/'>Teleport</a> © <%= new Date().getFullYear() %>
+      </p>
+    </section>
+  </body>
+</html>

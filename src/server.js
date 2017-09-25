@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const nanoid = require('nanoid')
 const { omitBy } = require('lodash')
 const queue = require('./queue')
+const path = require('path')
+const config = require('./config')
 
 const app = express()
 
@@ -14,6 +16,11 @@ app.use(
     type: '*/*'
   })
 )
+
+app.set('views', path.resolve(process.cwd(), 'src/views'))
+app.set('view engine', 'ejs')
+
+app.use(express.static(path.resolve(process.cwd(), 'src/public')))
 
 app.use((req, res, next) => {
   if (req.get('Delay-Origin')) {
@@ -56,6 +63,10 @@ app.use((req, res, next) => {
   } else {
     next()
   }
+})
+
+app.get('/', (_, res) => {
+  res.render('landing', { config })
 })
 
 app.all('/active', (_, res) => {

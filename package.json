@@ -17,12 +17,14 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "bull": "^3.0.0",
+    "ejs": "^2.5.7",
     "express": "^4.15.4",
     "got": "^7.1.0",
     "lodash": "^4.17.4",
     "nanoid": "^0.2.0"
   },
   "devDependencies": {
-    "ava": "^0.22.0"
+    "ava": "^0.22.0",
+    "foreman": "^2.0.0"
   }
 }

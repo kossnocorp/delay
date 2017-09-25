@@ -1,0 +1,174 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  font-family: system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue;
+  color: #26272d;
+}
+
+.v {
+  display: flex;
+  flex-direction: column;
+}
+
+.v > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.v.is-large > *:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.h {
+  display: flex;
+}
+
+.h > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.h.is-wrap {
+  flex-wrap: wrap;
+  margin-bottom: -1rem;
+}
+
+.h.is-wrap > * {
+  margin-bottom: 1rem;
+}
+
+.section {
+  padding: 4rem 2rem;
+}
+
+@media (max-width: 568px) {
+  .section {
+    padding: 2rem 1rem;
+  }
+}
+
+.section > * {
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.section.is-solid {
+  background: #fffff5;
+}
+
+.section.is-solid.is-gray {
+  background: #f9f9f9;
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.header.is-small {
+  font-size: 1.4rem;
+}
+
+.text {
+  line-height: 1.3;
+  font-size: 1.2rem;
+}
+
+.text strong {
+  font-weight: 600;
+}
+
+.text a {
+  color: #164e65;
+}
+
+.text.is-large {
+  font-size: 1.5rem;
+}
+
+.text.is-small {
+  font-size: 1rem;
+}
+
+.input {
+  padding: 1rem;
+  font-size: 1.1rem;
+  flex-grow: 1;
+  border: 1px solid #929292;
+  border-radius: 4px;
+}
+
+.button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border: 0;
+  background: #F7E355;
+  flex-shrink: 0;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.code {
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.1;
+  font-family: monospace;
+  background: #f9f9f9;
+}
+
+.logotype {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.logo {
+  height: 1.5rem;
+}
